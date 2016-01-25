@@ -4,6 +4,10 @@ class PicturesController < ApplicationController
   @pictures = Picture.all
   end
 
+  def show
+   @picture = Picture.find(params[:id])
+ end
+
   def edit
     @picture = Picture.find(params[:id])
   end
@@ -33,6 +37,12 @@ class PicturesController < ApplicationController
       # otherwise render the view associated with the action :new (i.e. new.html.erb)
       render :new
     end
+  end
+
+  def destroy
+    @picture = Picture.find(params[:id])
+   @picture.destroy
+   redirect_to pictures_url
   end
 
   private
